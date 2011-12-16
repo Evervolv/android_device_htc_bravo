@@ -1,0 +1,3 @@
+require mid=P*
+require board=bravo|desire
+require version-microp=031d|051d
