@@ -19,11 +19,9 @@
 # not specialized for any geography.
 #
 
-## (1) First, the most specific values, i.e. the aspects that are specific to GSM
+# First, the most specific values, i.e. the aspects that are specific to GSM
 
-PRODUCT_COPY_FILES += \
-    device/htc/bravo/init.bravo.rc:root/init.bravo.rc \
-    device/htc/bravo/ueventd.bravo.rc:root/ueventd.bravo.rc
+DEVICE_PACKAGE_OVERLAYS += device/htc/bravo/overlay
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=240 \
@@ -39,52 +37,31 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.hsdpa.category=8 \
     ro.ril.hsupa.category=5 \
     ro.ril.hsxpa=2 \
+    ro.ril.def.agps.mode=2 \
     wifi.interface=eth0 \
     wifi.supplicant_scan_interval=15 \
-    mobiledata.interfaces=rmnet0,rmnet1,rmnet2
-
-# Default network type.
-# 0 => WCDMA preferred.
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.default_network=3
-
-# Set default_france.acdb to audio_ctl driver if the ro.cid is HTC__203
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ril.enable.prl.recognition=1
-
-# AGPS otpions
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ril.def.agps.mode=2
-
-# The OpenGL ES API level that is natively supported by this device.
-# This is a 16.16 fixed point number
-PRODUCT_PROPERTY_OVERRIDES += \
+    mobiledata.interfaces=rmnet0,rmnet1,rmnet2 \
+    ro.media.dec.jpeg.memcap=20000000 \
+    dalvik.vm.heapsize=48m \
     ro.opengles.version=131072
 
-# This is a high density device with more memory, so larger vm heaps for it.
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapsize=48m
+# Default network type.
+# 0 => /* GSM/WCDMA (WCDMA preferred) */
+# 3 => /* GSM/WCDMA (auto mode, according to PRL) */
+PRODUCT_PROPERTY_OVERRIDES += ro.telephony.default_network=3
 
-## (2) Also get non-open-source GSM-specific aspects if available
-$(call inherit-product-if-exists, vendor/htc/bravo/bravo-vendor.mk)
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.media.dec.jpeg.memcap=20000000
+# Set default_france.acdb to audio_ctl driver if the ro.cid is HTC__203
+PRODUCT_PROPERTY_OVERRIDES += ro.ril.enable.prl.recognition=1
 
 # Don't set /proc/sys/vm/dirty_ratio to 0 when USB mounting
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vold.umsdirtyratio=20
+PRODUCT_PROPERTY_OVERRIDES += ro.vold.umsdirtyratio=20
 
 # Disable HWAccel for now
-ADDITIONAL_BUILD_PROPERTIES += \
-    ro.config.disable_hw_accel=true
+ADDITIONAL_BUILD_PROPERTIES += ro.config.disable_hw_accel=true
 
 # Ril workaround
-ADDITIONAL_BUILD_PROPERTIES += \
-    ro.telephony.ril.v3=signalstrength
+ADDITIONAL_BUILD_PROPERTIES += ro.telephony.ril.v3=signalstrength
     #skipbrokendatacall,facilitylock,datacall,icccardstatus
-
-DEVICE_PACKAGE_OVERLAYS += device/htc/bravo/overlay
 
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -95,7 +72,7 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
     frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/base/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/base/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml
@@ -108,7 +85,6 @@ PRODUCT_PACKAGES += \
     sensors.bravo \
     lights.bravo \
     librs_jni \
-    bravo-keypad.kcm \
     gps.bravo \
     libOmxCore \
     libOmxVidEnc \
@@ -130,15 +106,23 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_COPY_FILES += \
+    device/htc/bravo/init.bravo.rc:root/init.bravo.rc \
+    device/htc/bravo/init.bravo.usb.rc:root/init.bravo.usb.rc \
+    device/htc/bravo/ueventd.bravo.rc:root/ueventd.bravo.rc \
     device/htc/bravo/bravo-keypad.kl:system/usr/keylayout/bravo-keypad.kl \
+    device/htc/bravo/bravo-keypad.kcm:system/usr/keychars/bravo-keypad.kcm \
     device/htc/bravo/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
     device/htc/bravo/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
     device/htc/bravo/curcial-oj.idc:system/usr/idc/curcial-oj.idc \
     device/htc/bravo/vold.fstab:system/etc/vold.fstab
 
+# Prebuilt kernel / wifi module
 PRODUCT_COPY_FILES += \
     device/htc/bravo/bcm4329.ko:system/lib/modules/bcm4329.ko \
     device/htc/bravo/kernel:kernel
 
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
+
+# Also get non-open-source GSM-specific aspects if available
+$(call inherit-product-if-exists, vendor/htc/bravo/bravo-vendor.mk)

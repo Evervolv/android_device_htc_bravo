@@ -39,9 +39,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #PRODUCT_COPY_FILES +=  \
 #    vendor/ev/prebuilt/hvga/media/bootanimation.zip:system/media/bootanimation.zip
 # Use the n1 stock boot animation until we get a custom evervolv one.
-$(call inherit-product-if-exists, device/htc/passion/extras/extras.mk)
+PRODUCT_COPY_FILES += device/htc/passion/extras/nexus-bootanimation.zip:system/media/bootanimation.zip
 
 # Get some gapps
-ifdef ($(GAPPS),true)
+ifeq ($(GAPPS),true)
 $(call inherit-product, vendor/ev/prebuilt/gapps/gapps.mk)
 endif
