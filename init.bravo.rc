@@ -42,6 +42,13 @@ on boot
     # enable the GPS
     setprop ro.ril.def.agps.mode 2
 
+    # Add permissions for camera access
+    chmod 0666 /dev/msm_camera/config0
+    chmod 0666 /dev/msm_camera/control0
+    chmod 0666 /dev/msm_camera/frame0
+
+    chmod 0666 /dev/graphics/fb0
+
     # performance tweaks for flash
     write /sys/block/mtdblock3/bdi/read_ahead_kb 4
     write /sys/block/mtdblock4/bdi/read_ahead_kb 4

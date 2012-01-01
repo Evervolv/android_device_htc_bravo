@@ -16,9 +16,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=GRI40 PRODUCT_NAME=htc_bravo BUILD_FING
 #
 # Set up the product codename, build version & MOTD.
 #
-#FIXME Find a clever codename
-PRODUCT_CODENAME := Desire
-PRODUCT_VERSION_DEVICE_SPECIFIC := p2
+PRODUCT_CODENAME := Turba
+PRODUCT_VERSION_DEVICE_SPECIFIC := p3
 
 PRODUCT_MOTD :="\n\n\n--------------------MESSAGE---------------------\nThank you for choosing Evervolv for your HTC Desire\nPlease visit us at \#evervolv on irc.freenode.net\nFollow @preludedrew for the latest Evervolv updates\nGet the latest rom at evervolv.com\n------------------------------------------------\n"
 

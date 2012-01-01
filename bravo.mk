@@ -77,24 +77,38 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/base/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml
 
-# media config xml file
-PRODUCT_COPY_FILES += \
-    device/htc/bravo/media_profiles.xml:system/etc/media_profiles.xml
+## media config xml file
+#PRODUCT_COPY_FILES += \
+#    device/htc/bravo/media_profiles.xml:system/etc/media_profiles.xml
 
-PRODUCT_PACKAGES += \
-    sensors.bravo \
-    lights.bravo \
-    librs_jni \
+# Sensors
+PRODUCT_PACKAGES := \
     gps.bravo \
-    libOmxCore \
-    libOmxVidEnc \
-    com.android.future.usb.accessory \
+    lights.bravo \
+    sensors.bravo
+# Audio
+PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.primary.qsd8k \
     audio_policy.qsd8k \
-    hwcomposer.default \
+    libaudioutils
+# GPU
+PRODUCT_PACKAGES += \
     copybit.qsd8k \
     gralloc.qsd8k \
+    hwcomposer.default \
+    hwcomposer.qsd8k
+#    libgenlock \
+#    libmemalloc \
+#    liboverlay \
+#    libtilerenderer \
+#    libQcomUI
+# Omx
+PRODUCT_PACKAGES += \
+    libOmxCore \
+    libOmxVenc \
+    libOmxVdec \
+    libstagefrighthw
 
 PRODUCT_LOCALES := en
 
@@ -118,8 +132,14 @@ PRODUCT_COPY_FILES += \
 
 # Prebuilt kernel / wifi module
 PRODUCT_COPY_FILES += \
-    device/htc/bravo/bcm4329.ko:system/lib/modules/bcm4329.ko \
-    device/htc/bravo/kernel:kernel
+    device/htc/bravo/prebuilt/bcm4329.ko:system/lib/modules/bcm4329.ko \
+    device/htc/bravo/prebuilt/kernel:kernel
+
+# Camera libs
+PRODUCT_COPY_FILES += \
+    device/htc/bravo/prebuilt/camera.qsd8k.so:system/lib/hw/camera.qsd8k.so \
+    device/htc/bravo/prebuilt/liboemcamera.so:system/lib/liboemcamera.so \
+    device/htc/bravo/prebuilt/libcamera.so:system/lib/libcamera.so
 
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
