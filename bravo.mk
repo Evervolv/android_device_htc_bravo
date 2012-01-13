@@ -63,6 +63,11 @@ ADDITIONAL_BUILD_PROPERTIES += ro.config.disable_hw_accel=true
 ADDITIONAL_BUILD_PROPERTIES += ro.telephony.ril.v3=signalstrength
     #skipbrokendatacall,facilitylock,datacall,icccardstatus
 
+# Set usb type
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    persist.sys.usb.config=mass_storage \
+    persist.service.adb.enable=1
+
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -77,9 +82,9 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/base/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml
 
-## media config xml file
-#PRODUCT_COPY_FILES += \
-#    device/htc/bravo/media_profiles.xml:system/etc/media_profiles.xml
+# media config xml file
+PRODUCT_COPY_FILES += \
+    device/htc/bravo/media_profiles.xml:system/etc/media_profiles.xml
 
 # Sensors
 PRODUCT_PACKAGES := \

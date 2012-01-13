@@ -200,6 +200,4 @@
          free space above this threshold value. -->
     <integer name="config_downloadDataDirLowSpaceThreshold">10</integer>
 
-    <!-- Use legacy usb -->
-    <bool name="config_usesLegacyUsbDeviceManager">true</bool>
 </resources>

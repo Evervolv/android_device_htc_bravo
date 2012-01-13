@@ -43,6 +43,8 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_GLOBAL_CFLAGS += -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp
 
+TARGET_SPECIFIC_HEADER_PATH := device/htc/bravo/include
+
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
@@ -83,8 +85,13 @@ BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
 # RIL
 BOARD_USE_NEW_LIBRIL_HTC := true
 
-# From supersonic
+# Misc
 BOARD_USE_OPENSSL_ENGINE := true
+
+# Hacks
+BOARD_USES_LEGACY_QCOM := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
+BOARD_USE_LEGACY_TRACKPAD := true
 
 # # cat /proc/mtd
 # dev:    size   erasesize  name
@@ -106,9 +113,3 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := bravo
 # AMSS version to use for GPS
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 3200
-
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
-
-#FIXME dont piggyback passion
-# Call headers from msm-3.0: needed to build libs in hardware/qcom/display
-TARGET_SPECIFIC_HEADER_PATH := device/htc/passion/include

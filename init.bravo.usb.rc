@@ -1,38 +1,66 @@
-on init
-    write /sys/class/android_usb/android0/iSerial $ro.serialno
-    write /sys/class/android_usb/android0/f_rndis/manufacturer Htc
-    write /sys/class/android_usb/android0/f_rndis/vendorID 0bb4
-    write /sys/class/android_usb/android0/f_rndis/wceis 1
-
-on boot
-    write /sys/class/android_usb/android0/iManufacturer $ro.product.manufacturer
-    write /sys/class/android_usb/android0/iProduct $ro.product.model
+on property:sys.usb.config=adb
+    write /sys/class/usb_composite/adb/enable 1
+    start adbd
+    setprop sys.usb.state $sys.usb.config
 
 on property:sys.usb.config=mass_storage
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 0bb4
-    write /sys/class/android_usb/android0/idProduct 0ff9
-    write /sys/class/android_usb/android0/functions $sys.usb.config
-    write /sys/class/android_usb/android0/enable 1
+    write /sys/class/usb_composite/usb_mass_storage/enable 1
+    start adbd
     setprop sys.usb.state $sys.usb.config
 
 on property:sys.usb.config=mass_storage,adb
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 0bb4
-    write /sys/class/android_usb/android0/idProduct 0c87
-    write /sys/class/android_usb/android0/functions $sys.usb.config
-    write /sys/class/android_usb/android0/enable 1
+    write /sys/class/usb_composite/usb_mass_storage/enable 1
+    write /sys/class/usb_composite/adb/enable 1
     start adbd
     setprop sys.usb.state $sys.usb.config
 
 on property:sys.usb.config=rndis
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 0bb4
-    write /sys/class/android_usb/android0/idProduct 0ffe
-    write /sys/class/android_usb/android0/functions $sys.usb.config
-    write /sys/class/android_usb/android0/bDeviceClass 224
-    write /sys/class/android_usb/android0/enable 1
+    write /sys/class/usb_composite/rndis/enable 1
     setprop sys.usb.state $sys.usb.config
+
+on property:sys.usb.config=rndis,adb
+    write /sys/class/usb_composite/rndis/enable 1
+    write /sys/class/usb_composite/adb/enable 1
+    start adbd
+    setprop sys.usb.state $sys.usb.config
+
+####Below is not compatible with current usb gadget###
+
+#on init
+#    write /sys/class/android_usb/android0/iSerial $ro.serialno
+#    write /sys/class/android_usb/android0/f_rndis/manufacturer Htc
+#    write /sys/class/android_usb/android0/f_rndis/vendorID 0bb4
+#    write /sys/class/android_usb/android0/f_rndis/wceis 1
+
+#on boot
+#    write /sys/class/android_usb/android0/iManufacturer $ro.product.manufacturer
+#    write /sys/class/android_usb/android0/iProduct $ro.product.model
+
+#on property:sys.usb.config=mass_storage
+#    write /sys/class/android_usb/android0/enable 0
+#    write /sys/class/android_usb/android0/idVendor 0bb4
+#    write /sys/class/android_usb/android0/idProduct 0ff9
+#    write /sys/class/android_usb/android0/functions $sys.usb.config
+#    write /sys/class/android_usb/android0/enable 1
+#    setprop sys.usb.state $sys.usb.config
+
+#on property:sys.usb.config=mass_storage,adb
+#    write /sys/class/android_usb/android0/enable 0
+#    write /sys/class/android_usb/android0/idVendor 0bb4
+#    write /sys/class/android_usb/android0/idProduct 0c87
+#    write /sys/class/android_usb/android0/functions $sys.usb.config
+#    write /sys/class/android_usb/android0/enable 1
+#    start adbd
+#    setprop sys.usb.state $sys.usb.config
+
+#on property:sys.usb.config=rndis
+#    write /sys/class/android_usb/android0/enable 0
+#    write /sys/class/android_usb/android0/idVendor 0bb4
+#    write /sys/class/android_usb/android0/idProduct 0ffe
+#    write /sys/class/android_usb/android0/functions $sys.usb.config
+#    write /sys/class/android_usb/android0/bDeviceClass 224
+#    write /sys/class/android_usb/android0/enable 1
+#    setprop sys.usb.state $sys.usb.config
 
 # I dont know what the product id is for this
 #on property:sys.usb.config=rndis,adb
@@ -71,7 +99,7 @@ on property:sys.usb.config=rndis
 #    setprop sys.usb.state $sys.usb.config
 
 ##Adding this in because adb is being removed from persist.sys.usb.config after booting
-on property:persist.service.adb.enable=1
-    start adbd
-on property:persist.service.adb.enable=0
-    stop adbd
+#on property:persist.service.adb.enable=1
+#    start adbd
+#on property:persist.service.adb.enable=0
+#    stop adbd

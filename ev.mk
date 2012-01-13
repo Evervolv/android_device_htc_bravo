@@ -34,11 +34,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.oem.nosim.ecclist=911,112,999,000,08,118,120,122,110,119,995 \
     ro.ril.emc.mode=2
 
-# Copy hdpi specific bootanimation
-#PRODUCT_COPY_FILES +=  \
-#    vendor/ev/prebuilt/hvga/media/bootanimation.zip:system/media/bootanimation.zip
 # Use the n1 stock boot animation until we get a custom evervolv one.
-PRODUCT_COPY_FILES += device/htc/passion/extras/nexus-bootanimation.zip:system/media/bootanimation.zip
+PRODUCT_COPY_FILES += device/htc/passion/extras/bootanimation_passion_ics.zip:system/media/bootanimation.zip
 
 # Get some gapps
 ifeq ($(GAPPS),true)
