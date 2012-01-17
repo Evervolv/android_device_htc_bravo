@@ -140,11 +140,19 @@ PRODUCT_COPY_FILES += \
     device/htc/bravo/prebuilt/bcm4329.ko:system/lib/modules/bcm4329.ko \
     device/htc/bravo/prebuilt/kernel:kernel
 
-# Camera libs
+# XXX: fuck, fix this before next release
+# prebuilt camera modules
 PRODUCT_COPY_FILES += \
-    device/htc/bravo/prebuilt/camera.qsd8k.so:system/lib/hw/camera.qsd8k.so \
-    device/htc/bravo/prebuilt/liboemcamera.so:system/lib/liboemcamera.so \
-    device/htc/bravo/prebuilt/libcamera.so:system/lib/libcamera.so
+    device/htc/passion/prebuilt/camera.qsd8k.so:system/lib/hw/camera.qsd8k.so \
+    device/htc/passion/prebuilt/liboemcamera.so:system/lib/liboemcamera.so \
+    device/htc/passion/prebuilt/libcamera.so:system/lib/libcamera.so
+#temp: im just being lazy. need to merge in the code to build these
+PRODUCT_COPY_FILES += \
+    device/htc/passion/prebuilt/libOmxCore.so:system/lib/libOmxCore.so \
+    device/htc/passion/prebuilt/libOmxVdec.so:system/lib/libOmxVdec.so \
+    device/htc/passion/prebuilt/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \
+    device/htc/passion/prebuilt/libmediaplayerservice.so:system/lib/libmediaplayerservice.so \
+    device/htc/passion/prebuilt/libstagefrighthw.so:system/lib/libstagefrighthw.so
 
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)

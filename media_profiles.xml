@@ -77,7 +77,7 @@
 -->
 <MediaSettings>
     <!-- Each camcorder profile defines a set of predefined configuration parameters -->
-    <CamcorderProfiles>
+    <CamcorderProfiles cameraId="0">
 	<!-- Added but disabled for now until stagefright is fixed
         <EncoderProfile quality="720p" fileFormat="mp4" duration="60">
             <Video codec="m4v"
@@ -95,9 +95,9 @@
         <EncoderProfile quality="480p" fileFormat="mp4" duration="60">
             <Video codec="h264"
                    bitRate="3000000"
-                   width="720"
+                   width="640"
                    height="480"
-                   frameRate="24" />
+                   frameRate="15" />
 
             <Audio codec="aac"
                    bitRate="96000"
