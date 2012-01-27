@@ -1,12 +1,10 @@
-key 158   BACK              WAKE_DROPPED
-key 217   SEARCH            WAKE_DROPPED
-key 127   SEARCH            WAKE_DROPPED
+key 158   BACK
+key 217   SEARCH
+key 127   SEARCH
 key 116   POWER             WAKE
 key 115   VOLUME_UP         WAKE
 key 114   VOLUME_DOWN       WAKE
-key 102   HOME              WAKE_DROPPED
-key 229   MENU              WAKE_DROPPED
-key 59    MENU              WAKE_DROPPED
-key 139   MENU              WAKE_DROPPED
-# I dont think we need this but whatever
-key 107   ENDCALL           WAKE_DROPPED
+key 102   HOME
+key 229   MENU
+key 59    MENU
+key 139   MENU

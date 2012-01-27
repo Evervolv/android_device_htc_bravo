@@ -1,2 +1,5 @@
 mtd@misc 0460 radio diag
 
+# camera - just make sure its all writeable
+/dev/msm_camera/*       0666    system  camera
+/dev/graphics/fb*       0666    system  graphics
