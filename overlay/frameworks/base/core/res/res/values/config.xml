@@ -200,4 +200,7 @@
          free space above this threshold value. -->
     <integer name="config_downloadDataDirLowSpaceThreshold">10</integer>
 
+    <!-- If this is true, the screen will fade off. -->
+    <bool name="config_animateScreenLights">false</bool>
+
 </resources>

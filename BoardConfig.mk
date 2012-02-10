@@ -61,6 +61,7 @@ BOARD_USES_GENERIC_AUDIO := false
 BOARD_KERNEL_CMDLINE := no_console_suspend=1 msmsdcc_sdioirq=1 wire.search_count=5
 BOARD_KERNEL_BASE := 0x20000000
 BOARD_KERNEL_NEW_PPPOX := true
+TARGET_PREBUILT_KERNEL := device/htc/bravo/prebuilt/kernel
 
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
@@ -70,15 +71,23 @@ BOARD_VENDOR_QCOM_AMSS_VERSION := 3200
 BOARD_VENDOR_USE_AKMD := akm8973
 
 # Hardware rendering
-BOARD_EGL_CFG := device/htc/bravo/egl.cfg
-USE_OPENGL_RENDERER := false
-COMMON_GLOBAL_CFLAGS += -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_EGL_PIXEL_FORMAT_YV12 -DMISSING_GRALLOC_BUFFERS -DUNABLE_TO_DEQUEUE
-COMMON_GLOBAL_CFLAGS += -DCOPYBIT_QSD8K
-
-# qsd dont have overlay support in kernel
-TARGET_USE_OVERLAY := false
-# qsd dont have bypass
-TARGET_HAVE_BYPASS := false
+BOARD_EGL_CFG           := device/htc/bravo/egl.cfg
+USE_OPENGL_RENDERER     := true
+TARGET_USES_GENLOCK     := true
+# Unnecessary with new egl libs
+#COMMON_GLOBAL_CFLAGS   += -DMISSING_EGL_EXTERNAL_IMAGE -DMISSING_EGL_PIXEL_FORMAT_YV12
+# We only have 2 buffers so still need to hack it.
+COMMON_GLOBAL_CFLAGS    += -DMISSING_GRALLOC_BUFFERS
+# Just a safety measure to make sure its all included
+COMMON_GLOBAL_CFLAGS    += -DQCOM_HARDWARE
+# Force refresh rate since fps calc is broke and reports 0
+COMMON_GLOBAL_CFLAGS    += -DREFRESH_RATE=60
+# qsd8k: no support for overlay, bypass, or c2d
+TARGET_USE_OVERLAY      := false
+TARGET_HAVE_BYPASS      := false
+TARGET_USES_C2D_COMPOSITION := false
+# Debuging egl
+COMMON_GLOBAL_CFLAGS    += -DEGL_TRACE
 
 BOARD_USES_QCOM_LIBS := true
 BOARD_USES_QCOM_HARDWARE := true
@@ -93,9 +102,9 @@ BOARD_USE_NEW_LIBRIL_HTC := true
 BOARD_USE_OPENSSL_ENGINE := true
 
 # Hacks
-BOARD_USES_LEGACY_QCOM := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
 BOARD_USE_LEGACY_TRACKPAD := true
+TARGET_FORCE_CPU_UPLOAD := true
 
 # # cat /proc/mtd
 # dev:    size   erasesize  name

@@ -21,9 +21,11 @@
 
 # First, the most specific values, i.e. the aspects that are specific to GSM
 
-DEVICE_PACKAGE_OVERLAYS += device/htc/bravo/overlay
+DEVICE_PACKAGE_OVERLAYS := device/htc/bravo/overlay
+PRODUCT_LOCALES := en
 
-PRODUCT_PROPERTY_OVERRIDES += \
+# General propreties
+PRODUCT_PROPERTY_OVERRIDES := \
     ro.sf.lcd_density=240 \
     rild.libpath=/system/lib/libhtc_ril.so \
     ro.ril.ecc.HTC-ELL=92,93,94 \
@@ -42,8 +44,19 @@ PRODUCT_PROPERTY_OVERRIDES += \
     wifi.supplicant_scan_interval=15 \
     mobiledata.interfaces=rmnet0,rmnet1,rmnet2 \
     ro.media.dec.jpeg.memcap=20000000 \
-    dalvik.vm.heapsize=48m \
     ro.opengles.version=131072
+
+# Dalvik properties - read from AndroidRuntime
+# dexop-flags:
+# "v="  verification 'n': none, 'r': remote, 'a': all
+# "o="  optimization 'n': none, 'v': verified, 'a': all, 'f': full
+# "m=y" register map
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dexopt-flags=v=n,o=v,m=y \
+    dalvik.vm.checkjni=false \
+    dalvik.vm.heapstartsize=5m \
+    dalvik.vm.heapgrowthlimit=48m \
+    dalvik.vm.heapsize=128m
 
 # Default network type.
 # 0 => /* GSM/WCDMA (WCDMA preferred) */
@@ -56,18 +69,104 @@ PRODUCT_PROPERTY_OVERRIDES += ro.ril.enable.prl.recognition=1
 # Don't set /proc/sys/vm/dirty_ratio to 0 when USB mounting
 PRODUCT_PROPERTY_OVERRIDES += ro.vold.umsdirtyratio=20
 
-# Disable HWAccel for now
-ADDITIONAL_BUILD_PROPERTIES += ro.config.disable_hw_accel=true
-
 # Ril workaround
-ADDITIONAL_BUILD_PROPERTIES += ro.telephony.ril.v3=signalstrength
-    #skipbrokendatacall,facilitylock,datacall,icccardstatus
+# Also available: skipbrokendatacall,facilitylock,datacall,icccardstatus
+PRODUCT_PROPERTY_OVERRIDES += ro.telephony.ril.v3=signalstrength
+
+# Enable gpu composition: 0 => cpu composition, 1 => gpu composition
+# Note: must be 1 for debug.composition.type to work
+PRODUCT_PROPERTY_OVERRIDES += debug.sf.hw=1
+
+# Enable copybit composition
+PRODUCT_PROPERTY_OVERRIDES += debug.composition.type=mdp
+
+# Force 2 buffers - gralloc defaults to 3 and we only have 2
+PRODUCT_PROPERTY_OVERRIDES += debug.gr.numframebuffers=2
+
+# HardwareRenderer properties
+# dirty_regions: "false" to disable partial invalidates, override if enabletr=true
+PRODUCT_PROPERTY_OVERRIDES += \
+    hwui.render_dirty_regions=false \
+    hwui.disable_vsync=true \
+    hwui.print_config=choice \
+    debug.enabletr=false
 
 # Set usb type
-ADDITIONAL_DEFAULT_PROPERTIES += \
+ADDITIONAL_DEFAULT_PROPERTIES := \
     persist.sys.usb.config=mass_storage \
     persist.service.adb.enable=1
 
+#
+# Packages required for bravo
+#
+# Sensors
+PRODUCT_PACKAGES := \
+    gps.bravo \
+    lights.bravo \
+    sensors.bravo \
+    camera.qsd8k
+# Audio
+PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    audio.primary.qsd8k \
+    audio_policy.qsd8k \
+    libaudioutils
+# GPU
+PRODUCT_PACKAGES += \
+    copybit.qsd8k \
+    gralloc.qsd8k \
+    hwcomposer.default \
+    hwcomposer.qsd8k \
+    libgenlock \
+    libmemalloc \
+    libtilerenderer \
+    libQcomUI
+# Omx
+PRODUCT_PACKAGES += \
+    libOmxCore \
+    libOmxVidEnc \
+    libOmxVdec \
+    libstagefrighthw
+# Omx cli test apps
+PRODUCT_PACKAGES += \
+    libmm-omxcore \
+    mm-vdec-omx-test \
+    liblasic \
+    ast-mm-vdec-omx-test \
+    mm-venc-omx-test
+
+# Bravo uses high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+
+# we have enough storage space to hold precise GC data
+PRODUCT_TAGS += dalvik.gc.type-precise
+
+# Prebuilt files/configs
+PRODUCT_COPY_FILES := \
+    device/htc/bravo/init.bravo.rc:root/init.bravo.rc \
+    device/htc/bravo/init.bravo.usb.rc:root/init.bravo.usb.rc \
+    device/htc/bravo/ueventd.bravo.rc:root/ueventd.bravo.rc \
+    device/htc/bravo/bravo-keypad.kl:system/usr/keylayout/bravo-keypad.kl \
+    device/htc/bravo/bravo-keypad.kcm:system/usr/keychars/bravo-keypad.kcm \
+    device/htc/bravo/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
+    device/htc/bravo/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
+    device/htc/bravo/curcial-oj.idc:system/usr/idc/curcial-oj.idc \
+    device/htc/bravo/vold.fstab:system/etc/vold.fstab
+
+# Prebuilt modules
+PRODUCT_COPY_FILES += \
+    device/htc/bravo/prebuilt/bcm4329.ko:system/lib/modules/bcm4329.ko
+
+# Prebuilt Kernel
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+LOCAL_KERNEL := device/htc/bravo/prebuilt/kernel
+else
+LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
+
+# Permissions
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -86,60 +185,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/bravo/media_profiles.xml:system/etc/media_profiles.xml
 
-# Sensors
-PRODUCT_PACKAGES := \
-    gps.bravo \
-    lights.bravo \
-    sensors.bravo \
-    camera.qsd8k
-# Audio
-PRODUCT_PACKAGES += \
-    audio.a2dp.default \
-    audio.primary.qsd8k \
-    audio_policy.qsd8k \
-    libaudioutils
-# GPU
-PRODUCT_PACKAGES += \
-    copybit.qsd8k \
-    gralloc.qsd8k \
-    hwcomposer.default \
-    hwcomposer.qsd8k
-#    libgenlock \
-#    libmemalloc \
-#    liboverlay \
-#    libtilerenderer \
-#    libQcomUI
-# Omx
-PRODUCT_PACKAGES += \
-    libOmxCore \
-    libOmxVenc \
-    libOmxVdec \
-    libstagefrighthw
-
-PRODUCT_LOCALES := en
-
-# Passion uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
-
-# we have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
-
-PRODUCT_COPY_FILES += \
-    device/htc/bravo/init.bravo.rc:root/init.bravo.rc \
-    device/htc/bravo/init.bravo.usb.rc:root/init.bravo.usb.rc \
-    device/htc/bravo/ueventd.bravo.rc:root/ueventd.bravo.rc \
-    device/htc/bravo/bravo-keypad.kl:system/usr/keylayout/bravo-keypad.kl \
-    device/htc/bravo/bravo-keypad.kcm:system/usr/keychars/bravo-keypad.kcm \
-    device/htc/bravo/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
-    device/htc/bravo/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
-    device/htc/bravo/curcial-oj.idc:system/usr/idc/curcial-oj.idc \
-    device/htc/bravo/vold.fstab:system/etc/vold.fstab
-
-# Prebuilt kernel / wifi module
-PRODUCT_COPY_FILES += \
-    device/htc/bravo/prebuilt/bcm4329.ko:system/lib/modules/bcm4329.ko \
-    device/htc/bravo/prebuilt/kernel:kernel
+# media profiles and capabilities spec
+$(call inherit-product, device/htc/bravo/media_a1026.mk)
 
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)

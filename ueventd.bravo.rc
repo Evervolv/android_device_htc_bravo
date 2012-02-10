@@ -1,5 +1,11 @@
 mtd@misc 0460 radio diag
 
+# the genlock client device node is world writable/readable.
+/dev/genlock            0666    system  graphics
+
+# gpu driver for adreno200 is globally accessible
+/dev/kgsl-3d0           0666    system  graphics
+
 # camera - just make sure its all writeable
 /dev/msm_camera/*       0666    system  camera
 /dev/graphics/fb*       0666    system  graphics
