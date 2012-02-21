@@ -53,14 +53,13 @@ PRODUCT_PROPERTY_OVERRIDES := \
 # "m=y" register map
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dexopt-flags=v=n,o=v,m=y \
-    dalvik.vm.checkjni=false \
-    dalvik.vm.heapstartsize=5m \
-    dalvik.vm.heapgrowthlimit=48m \
-    dalvik.vm.heapsize=128m
+    dalvik.vm.checkjni=false
+
+# Default heap size for 512mb device
+include frameworks/base/build/phone-hdpi-512-dalvik-heap.mk
 
 # Default network type.
-# 0 => /* GSM/WCDMA (WCDMA preferred) */
-# 3 => /* GSM/WCDMA (auto mode, according to PRL) */
+# 0 => GSM/WCDMA (WCDMA preferred), 3 => GSM/WCDMA (auto mode, according to PRL)
 PRODUCT_PROPERTY_OVERRIDES += ro.telephony.default_network=3
 
 # Set default_france.acdb to audio_ctl driver if the ro.cid is HTC__203
@@ -127,13 +126,6 @@ PRODUCT_PACKAGES += \
     libOmxVidEnc \
     libOmxVdec \
     libstagefrighthw
-# Omx cli test apps
-PRODUCT_PACKAGES += \
-    libmm-omxcore \
-    mm-vdec-omx-test \
-    liblasic \
-    ast-mm-vdec-omx-test \
-    mm-venc-omx-test
 
 # Bravo uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi
@@ -152,7 +144,8 @@ PRODUCT_COPY_FILES := \
     device/htc/bravo/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
     device/htc/bravo/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
     device/htc/bravo/curcial-oj.idc:system/usr/idc/curcial-oj.idc \
-    device/htc/bravo/vold.fstab:system/etc/vold.fstab
+    device/htc/bravo/vold.fstab:system/etc/vold.fstab \
+    device/htc/bravo/sysctl.conf:system/etc/sysctl.conf
 
 # Prebuilt modules
 PRODUCT_COPY_FILES += \

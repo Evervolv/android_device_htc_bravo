@@ -17,6 +17,7 @@
 
 <resources>
     <string-array name="wallpapers" translatable="false">
+        <item>wallpaper_evervolv_android</item>
         <item>wallpaper_street_lights</item>
         <item>wallpaper_stream</item>
         <item>wallpaper_phasebeam</item>
@@ -31,6 +32,6 @@
         <item>wallpaper_mountains</item>
         <item>wallpaper_sunset</item>
         <item>wallpaper_goldengate</item>
-	<item>wallpaper_shuttle</item>
+        <item>wallpaper_shuttle</item>
     </string-array>
 </resources>
