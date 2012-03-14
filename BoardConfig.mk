@@ -58,6 +58,8 @@ WIFI_DRIVER_MODULE_ARG      := "iface_name=wlan firmware_path=/system/vendor/fir
 WIFI_DRIVER_MODULE_NAME     := "bcm4329"
 
 BOARD_USES_GENERIC_AUDIO := false
+# prevent breakage from QCOM_HARDWARE in system/audio.h
+COMMON_GLOBAL_CFLAGS += -DLEGACY_AUDIO_COMPAT
 
 BOARD_KERNEL_CMDLINE := no_console_suspend=1 msmsdcc_sdioirq=1 wire.search_count=5
 BOARD_KERNEL_BASE := 0x20000000
@@ -87,6 +89,8 @@ COMMON_GLOBAL_CFLAGS    += -DREFRESH_RATE=60
 TARGET_USE_OVERLAY      := false
 TARGET_HAVE_BYPASS      := false
 TARGET_USES_C2D_COMPOSITION := false
+# Allow fallback to ashmem
+TARGET_GRALLOC_USES_ASHMEM := true
 # Debuging egl
 COMMON_GLOBAL_CFLAGS    += -DEGL_TRACE
 
