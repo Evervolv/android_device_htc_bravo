@@ -177,9 +177,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/bravo/media_profiles.xml:system/etc/media_profiles.xml
 
-# media profiles and capabilities spec
-$(call inherit-product, device/htc/bravo/media_a1026.mk)
-
 # stuff common to all HTC phones
 $(call inherit-product, device/htc/common/common.mk)
 
