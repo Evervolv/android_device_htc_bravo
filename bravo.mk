@@ -70,7 +70,7 @@ PRODUCT_PROPERTY_OVERRIDES += ro.vold.umsdirtyratio=20
 
 # Ril workaround
 # Also available: skipbrokendatacall,facilitylock,datacall,icccardstatus
-PRODUCT_PROPERTY_OVERRIDES += ro.telephony.ril.v3=signalstrength
+PRODUCT_PROPERTY_OVERRIDES += ro.telephony.ril.v3=signalstrength,singlepdp
 
 # Enable gpu composition: 0 => cpu composition, 1 => gpu composition
 # Note: must be 1 for debug.composition.type to work

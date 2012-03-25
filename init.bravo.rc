@@ -68,6 +68,8 @@ on boot
     #write /sys/kernel/mm/ksm/sleep_millisecs 1500
     write /sys/kernel/mm/ksm/sleep_millisecs 3000
     write /sys/kernel/mm/ksm/pages_to_scan 256
+    # enable KSM
+    write /sys/kernel/mm/ksm/run 1
 
     # Fast dormancy settings
     setprop ro.ril.fast.dormancy.rule 1
