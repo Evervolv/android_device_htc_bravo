@@ -62,6 +62,9 @@ touch.size.calibration = normalized
 # Orientation
 touch.orientation.calibration = none
 
+    # JumpyTouchFilter
+touch.filterTouchEvents = 1
+
     # Keyboard
 keyboard.layout = bravo-keypad
 keyboard.characterMap = Virtual
