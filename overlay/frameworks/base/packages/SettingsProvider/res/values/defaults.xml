@@ -22,7 +22,7 @@
     <integer name="def_screen_off_timeout">60000</integer>
     <integer name="def_lockscreen_sounds_enabled">0</integer>
     <!-- Default for Settings.System.POINTER_SPEED -->
-    <integer name="def_pointer_speed">100</integer>
+    <integer name="def_pointer_speed">50</integer>
     <!-- Default for UI touch sounds enabled -->
     <bool name="def_sound_effects_enabled">false</bool>
     <fraction name="def_window_animation_scale">100%</fraction>
