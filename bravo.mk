@@ -41,16 +41,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.hsxpa=2 \
     ro.ril.def.agps.mode=2 \
     wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=15 \
+    wifi.supplicant_scan_interval=180 \
+    ro.ril.disable.power.collapse=0 \
+    windowsmgr.max_events_per_sec=120 \
     mobiledata.interfaces=rmnet0,rmnet1,rmnet2 \
     ro.media.dec.jpeg.memcap=20000000 \
     ro.opengles.version=131072
 
 # Dalvik properties - read from AndroidRuntime
-# dexop-flags:
-# "v="  verification 'n': none, 'r': remote, 'a': all
-# "o="  optimization 'n': none, 'v': verified, 'a': all, 'f': full
-# "m=y" register map
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dexopt-flags=v=n,o=v,m=y \
     dalvik.vm.checkjni=false
