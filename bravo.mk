@@ -50,7 +50,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Dalvik properties - read from AndroidRuntime
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dexopt-flags=v=n,o=v,m=y \
+    dalvik.vm.dexopt-flags=m=y \
     dalvik.vm.checkjni=false
 
 # Default heap size for 512mb device
