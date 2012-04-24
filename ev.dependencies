@@ -1,0 +1,7 @@
+[
+    {
+        "repository": "android_kernel_htc_qsd8k",
+        "target_path": "kernel/htc/qsd8k",
+        "branch": "ics"
+    }
+]

@@ -145,16 +145,10 @@ PRODUCT_COPY_FILES += \
     device/htc/bravo/sysctl.conf:system/etc/sysctl.conf
 
 # Prebuilt modules
+ifneq ($(BUILD_KERNEL),true)
 PRODUCT_COPY_FILES += \
     device/htc/bravo/prebuilt/bcm4329.ko:system/lib/modules/bcm4329.ko
-
-# Prebuilt Kernel
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_KERNEL := device/htc/bravo/prebuilt/kernel
-else
-LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
-PRODUCT_COPY_FILES += $(LOCAL_KERNEL):kernel
 
 # Permissions
 PRODUCT_COPY_FILES += \
