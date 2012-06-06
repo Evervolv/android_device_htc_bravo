@@ -1,3 +1,6 @@
+# Call this first so apn list is actually copied
+$(call inherit-product, vendor/ev/config/gsm.mk)
+
 $(call inherit-product, device/htc/bravo/full_bravo.mk)
 
 # Inherit some common evervolv stuff.
@@ -25,8 +28,7 @@ PRODUCT_MOTD :="\n\n\n--------------------MESSAGE---------------------\nThank yo
 # Extra Packages
 #
 PRODUCT_PACKAGES += \
-    Camera \
-    Stk
+    Camera
 
 # Extra RIL settings
 PRODUCT_PROPERTY_OVERRIDES += \
