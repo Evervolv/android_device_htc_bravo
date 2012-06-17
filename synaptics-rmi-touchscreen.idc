@@ -13,13 +13,14 @@
 # limitations under the License.
 
 #
-# Input Device Calibration File for the Passion touch screen.
+# Input Device Calibration File for the Bravo touch screen.
 #
 # These calibration values are derived from empirical measurements
 # and may not be appropriate for use with other touch screens.
 # Refer to the input device calibration documentation for more details.
 #
 
+# Basic Parameters
 touch.deviceType = touchScreen
 touch.orientationAware = 1
 
@@ -57,19 +58,10 @@ touch.pressure.source = default
 touch.pressure.scale = 0.01
 
 # Size
-touch.size.calibration = normalized
+touch.size.calibration = none
 
 # Orientation
 touch.orientation.calibration = none
 
-    # JumpyTouchFilter
+# JumpyTouchFilter
 touch.filterTouchEvents = 1
-
-    # Keyboard
-keyboard.layout = bravo-keypad
-keyboard.characterMap = Virtual
-keyboard.orientationAware = 1
-keyboard.builtIn = 0
-
-device.internal = 1
-
