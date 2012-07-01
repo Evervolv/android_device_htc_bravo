@@ -20,7 +20,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=htc_bravo BUILD_FINGERPRINT=htc_wwe
 # Set up the product codename, build version & MOTD.
 #
 PRODUCT_CODENAME := Turba
-PRODUCT_VERSION_DEVICE_SPECIFIC := a5
+PRODUCT_VERSION_DEVICE_SPECIFIC := a6
 
 PRODUCT_MOTD :="\n\n\n--------------------MESSAGE---------------------\nThank you for choosing Evervolv for your HTC Desire\nPlease visit us at \#evervolv on irc.freenode.net\nFollow @preludedrew for the latest Evervolv updates\nGet the latest rom at evervolv.com\n------------------------------------------------\n"
 
@@ -36,9 +36,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.oem.nosim.ecclist=911,112,999,000,08,118,120,122,110,119,995 \
     ro.ril.emc.mode=2
 
-# Use the n1 stock boot animation until we get a custom evervolv one.
+# Copy compatible bootanimation
 PRODUCT_COPY_FILES += \
-    device/htc/passion/extras/bootanimation_passion_ics.zip:system/media/bootanimation.zip
+    vendor/ev/prebuilt/hvga/media/bootanimation.zip:system/media/bootanimation.zip
+#    device/htc/passion/extras/bootanimation_passion_ics.zip:system/media/bootanimation.zip
 
 # Hot reboot
 PRODUCT_PACKAGE_OVERLAYS += vendor/ev/overlay/hot_reboot
