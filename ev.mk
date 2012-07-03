@@ -30,15 +30,9 @@ PRODUCT_MOTD :="\n\n\n--------------------MESSAGE---------------------\nThank yo
 PRODUCT_PACKAGES += \
     Camera
 
-# Extra RIL settings
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ril.enable.managed.roaming=1 \
-    ro.ril.oem.nosim.ecclist=911,112,999,000,08,118,120,122,110,119,995 \
-    ro.ril.emc.mode=2
-
 # Copy compatible bootanimation
 PRODUCT_COPY_FILES += \
-    vendor/ev/prebuilt/hvga/media/bootanimation.zip:system/media/bootanimation.zip
+    vendor/ev/prebuilt/wvga/media/bootanimation.zip:system/media/bootanimation.zip
 #    device/htc/passion/extras/bootanimation_passion_ics.zip:system/media/bootanimation.zip
 
 # Hot reboot

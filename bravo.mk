@@ -23,7 +23,7 @@
 
 DEVICE_PACKAGE_OVERLAYS := device/htc/bravo/overlay
 
-# General propreties
+# Propreties
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=240 \
     rild.libpath=/system/lib/libhtc_ril.so \
@@ -46,7 +46,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
     ro.telephony.default_network=3 \
     ro.ril.enable.prl.recognition=1 \
-    ro.telephony.ril.v3=signalstrength,singlepdp \
+    ro.ril.enable.managed.roaming=1 \
+    ro.ril.oem.nosim.ecclist=911,112,999,000,08,118,120,122,110,119,995 \
+    ro.ril.emc.mode=2 \
+    ro.telephony.ril.v3=signalstrength,singlepdp,skipbrokendatacall \
     ro.vold.umsdirtyratio=20
 
 # Set usb type
@@ -57,6 +60,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 #
 # Packages required for bravo
 #
+
 # Sensors
 PRODUCT_PACKAGES += \
     gps.bravo \
