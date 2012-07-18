@@ -114,6 +114,10 @@ service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
     group bluetooth net_bt_admin
     disabled
 
+    # Wifi - Tethering
+on property:init.svc.wpa_supplicant=stopped
+    stop dhcpcd
+
 service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     class late_start
     user root
