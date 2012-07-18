@@ -28,7 +28,7 @@ PRODUCT_MOTD :="\n\n\n--------------------MESSAGE---------------------\nThank yo
 # Extra Packages
 #
 PRODUCT_PACKAGES += \
-    LegacyCamera
+    Camera
 
 # Copy compatible bootanimation
 PRODUCT_COPY_FILES += \
