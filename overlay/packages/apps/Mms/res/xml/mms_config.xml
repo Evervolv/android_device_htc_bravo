@@ -48,7 +48,7 @@
     <!-- If true, The text message over 160 characters will be sent in multi part.
          If false, The text message over 160 characters will be sent
          via multi media message. -->
-    <bool name="enableMultipartSMS">false</bool>
+    <bool name="enableMultipartSMS">true</bool>
 
     <!-- If true, The mms support slide duration.
          If false, The mms does not support slide duration and we have to
