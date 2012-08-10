@@ -65,8 +65,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 PRODUCT_PACKAGES += \
     gps.bravo \
     lights.bravo \
-    sensors.bravo \
-    camera.qsd8k
+    sensors.bravo
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
