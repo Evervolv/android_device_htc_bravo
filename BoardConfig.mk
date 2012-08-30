@@ -47,6 +47,9 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 3200
 # RIL
 BOARD_USE_NEW_LIBRIL_HTC := true
 
+# Pull all dictionaries
+TARGET_USE_KEYBOARD := international
+
 # Hacks
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
 BOARD_USE_LEGACY_TRACKPAD := true
