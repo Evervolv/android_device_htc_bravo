@@ -1,3 +1,6 @@
+# Pull all dictionaries (This makes sure it gets called)
+TARGET_USE_KEYBOARD := international
+
 # Call this first so apn list is actually copied
 $(call inherit-product, vendor/ev/config/gsm.mk)
 
