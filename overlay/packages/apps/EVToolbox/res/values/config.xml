@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- DPI resources -->
+    <string name="config_defaultDpi">240</string>
+    <string name="config_recommendedTabletDpi">160</string>
+</resources>
