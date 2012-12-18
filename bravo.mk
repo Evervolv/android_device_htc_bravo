@@ -49,7 +49,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.enable.managed.roaming=1 \
     ro.ril.oem.nosim.ecclist=911,112,999,000,08,118,120,122,110,119,995 \
     ro.ril.emc.mode=2 \
-    ro.telephony.ril.v3=signalstrength,singlepdp,apptypesim \
+    ro.telephony.ril.v3=signalstrengthgsm,singlepdp,apptypesim \
     ro.vold.umsdirtyratio=20
 
 # Set usb type
