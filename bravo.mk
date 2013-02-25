@@ -71,6 +71,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/htc/bravo/init.bravo.rc:root/init.bravo.rc \
     device/htc/bravo/init.bravo.usb.rc:root/init.bravo.usb.rc \
+    device/htc/bravo/fstab.bravo:root/fstab.bravo \
     device/htc/bravo/ueventd.bravo.rc:root/ueventd.bravo.rc
 
 # Prebuilt files/configs
