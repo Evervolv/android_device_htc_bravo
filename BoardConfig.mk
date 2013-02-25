@@ -37,7 +37,6 @@ BOARD_KERNEL_BASE := 0x20000000
 BOARD_KERNEL_NEW_PPPOX := true
 
 TARGET_KERNEL_CONFIG    := evervolv_bravo_defconfig
-TARGET_PREBUILT_KERNEL  := device/htc/bravo/prebuilt/kernel
 
 # to enable the GPS HAL
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := bravo
