@@ -4,7 +4,7 @@
         "target_path": "kernel/htc/qsd8k",
         "branch": "jellybean",
         "dep_type": "kernel"
-    }
+    },
     {
         "repository": "android_device_htc_qsd8k-common",
         "target_path": "device/htc/qsd8k-common",
