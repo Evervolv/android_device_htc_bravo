@@ -5,6 +5,7 @@ mtd@misc 0460 radio diag
 
 # gpu driver for adreno200 is globally accessible
 /dev/kgsl-3d0           0666    system  graphics
+/dev/ion                0664    system  system
 
 # camera - just make sure its all writeable
 /dev/msm_camera/*       0666    system  camera
