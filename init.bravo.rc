@@ -18,6 +18,8 @@ on post-fs-data
 on boot
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
+    insmod /system/lib/modules/bcmdhd.ko
+
     # bluetooth power up/down interface
     chown bluetooth bluetooth /dev/ttyHS0
     chmod 0600 /dev/ttyHS0
