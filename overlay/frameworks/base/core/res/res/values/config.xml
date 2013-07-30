@@ -199,7 +199,7 @@
     <bool translatable="false" name="config_wifi_background_scan_support">true</bool>
 
     <!-- Boolean indicating whether the wifi chipset has p2p support -->
-    <bool translatable="false" name="config_wifi_p2p_support">true</bool>
+    <!--<bool translatable="false" name="config_wifi_p2p_support">true</bool>-->
 
     <bool name="config_ui_enableFadingMarquee">false</bool>
 
