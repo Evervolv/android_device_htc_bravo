@@ -71,6 +71,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/htc/bravo/init.bravo.rc:root/init.bravo.rc \
     device/htc/bravo/init.bravo.usb.rc:root/init.bravo.usb.rc \
+    device/htc/bravo/fstab.bravo:root/fstab.bravo \
     device/htc/bravo/ueventd.bravo.rc:root/ueventd.bravo.rc
 
 # Prebuilt files/configs
@@ -83,7 +84,6 @@ PRODUCT_COPY_FILES += \
     device/htc/bravo/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc \
     device/htc/bravo/synaptics-rmi-touchscreen.kl:system/usr/keylayout/synaptics-rmi-touchscreen.kl \
     device/htc/bravo/synaptics-rmi-touchscreen.kcm:system/usr/keychars/synaptics-rmi-touchscreen.kcm \
-    device/htc/bravo/vold.fstab:system/etc/vold.fstab \
     device/htc/bravo/sysctl.conf:system/etc/sysctl.conf
 
 # Permissions

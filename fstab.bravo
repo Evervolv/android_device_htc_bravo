@@ -1,0 +1,15 @@
+## Android fstab for HTC Bravo
+#
+## Niklas Luoto (nikez141@gmail.com)
+#
+## Last updated: 2013-07-31
+
+#<label>                                       <mnt_point>            <type>          <mnt_flags and options>        <fs_mgr_flags>
+boot                                           /boot                  mtd             defaults                        defaults
+cache                                          /cache                 yaffs2          defaults                        defaults
+userdata                                       /data                  yaffs2          defaults                        defaults
+misc                                           /misc                  mtd             defaults                        defaults
+recovery                                       /recovery              mtd             defaults                        defaults
+system                                         /system                yaffs2          defaults                        defaults
+
+/devices/platform/msm_sdcc.2/mmc_host/mmc1     /storage/sdcard0       vfat            defaults                        voldmanaged=sdcard:1
