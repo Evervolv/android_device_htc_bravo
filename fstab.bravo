@@ -12,4 +12,4 @@ misc                                           /misc                  mtd       
 recovery                                       /recovery              mtd             defaults                        defaults
 system                                         /system                yaffs2          defaults                        defaults
 
-/devices/platform/msm_sdcc.2/mmc_host/mmc1     /storage/sdcard0       vfat            defaults                        voldmanaged=sdcard:1
+/devices/platform/msm_sdcc.2/mmc_host/mmc1     auto                   auto            defaults                        voldmanaged=sdcard0:auto
