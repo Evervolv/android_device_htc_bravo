@@ -7,7 +7,7 @@ $(call inherit-product, vendor/ev/config/gsm.mk)
 $(call inherit-product, device/htc/bravo/full_bravo.mk)
 
 # Inherit some common evervolv stuff.
-$(call inherit-product, vendor/ev/config/common_full_phone.mk)
+$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common_small_phone.mk)
 
 #
 # Setup device specific product configuration.
@@ -28,8 +28,8 @@ PRODUCT_VERSION_DEVICE_SPECIFIC := p2
 PRODUCT_MOTD :="\n\n\n--------------------MESSAGE---------------------\nThank you for choosing Evervolv for your HTC Desire\nPlease visit us at \#evervolv on irc.freenode.net\nFollow @preludedrew for the latest Evervolv updates\nGet the latest rom at evervolv.com\n------------------------------------------------\n"
 
 # Copy compatible bootanimation
-PRODUCT_COPY_FILES += \
-    vendor/ev/prebuilt/wvga/media/bootanimation.zip:system/media/bootanimation.zip
+#PRODUCT_COPY_FILES += \
+#    vendor/ev/prebuilt/wvga/media/bootanimation.zip:system/media/bootanimation.zip
 #    device/htc/passion/extras/bootanimation_passion_ics.zip:system/media/bootanimation.zip
 
 # Hot reboot
