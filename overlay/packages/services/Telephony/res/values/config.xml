@@ -14,14 +14,8 @@
      limitations under the License.
 -->
 
-<!-- Bravo-specific phone app resources. -->
+<!-- Bravo-specific telephony service resources. -->
 <resources>
-
-    <!-- Enable the onscreen "Dial" button in the emergency dialer. -->
-    <bool name="config_show_onscreen_dial_button">true</bool>
-
-    <!-- This device implements a noise suppression device for in call audio-->
-    <bool name="has_in_call_noise_suppression">false</bool>
 
     <!-- Determine whether calls to mute the microphone in PhoneUtils
          are routed through the android.media.AudioManager class (true) or through
