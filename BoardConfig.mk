@@ -58,6 +58,9 @@ BOARD_USE_LEGACY_TRACKPAD := true
 # Recovery
 TARGET_RECOVERY_FSTAB   := device/htc/bravo/fstab.bravo
 
+# TWRP
+DEVICE_RESOLUTION := 480x800
+
 # # cat /proc/mtd
 # dev:    size   erasesize  name
 # mtd0: 000a0000 00020000 "misc"
